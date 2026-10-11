@@ -5,7 +5,7 @@
 
 Four Machine Learning tasks (2 Easy + 2 Medium) completed on the
 Netflix titles dataset
-(8,790 titles; `data/netflix_dataset.csv`). All code is original,
+(8,790 titles). All code is original,
 written for this portfolio, and every result quoted below comes from
 actually running the scripts in this repository.
 
@@ -18,14 +18,12 @@ actually running the scripts in this repository.
 
 ## Structure
 ```
-netflix-ml-projects/
-├── data/netflix_dataset.csv
-├── requirements.txt
-└── Projects/
-    ├── Task1_Netflix_Recommendation_System/
-    ├── Task2_Content_Type_Prediction/
-    ├── Task3_Rating_Classification/
-    └── Task4_Content_Segmentation/
+Netflix_ML_Projects/
+├── README.md
+├── Task1_Netflix_Recommendation_System/
+├── Task2_Content_Type_Prediction/
+├── Task3_Rating_Classification/
+└── Task4_Content_Segmentation/
 ```
 Each task folder contains its runnable `.py` script, a README with the
 real results, PNG screenshots of its plots, a `results.json` and the
@@ -33,8 +31,8 @@ full `run_output.txt` log.
 
 ## How to Run Everything
 ```bash
-pip install -r requirements.txt
-cd Projects/Task1_Netflix_Recommendation_System && python recommendation_system.py
+# Run from the repository root — the task folders are at the top level (there is no Projects/ folder or top-level requirements.txt)
+cd Task1_Netflix_Recommendation_System && python recommendation_system.py
 cd ../Task2_Content_Type_Prediction && python content_type_prediction.py
 cd ../Task3_Rating_Classification && python rating_classification.py   # ~2-3 min (grid search)
 cd ../Task4_Content_Segmentation && python content_segmentation.py
