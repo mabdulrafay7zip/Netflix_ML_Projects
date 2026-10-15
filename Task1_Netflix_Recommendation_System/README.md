@@ -11,7 +11,7 @@ alone.
 
 ## Dataset
 The Netflix titles dataset
-(`data/netflix_dataset.csv` in the parent folder): **8,790 rows** with
+(`netflix_dataset.csv`, not included in this repository — see "How to Run" below): **8,790 rows** with
 columns show_id, type, title, director, country, date_added,
 release_year, rating, duration and listed_in. After removing 3 duplicated
 titles, **8,787 unique titles** are indexed.
@@ -48,11 +48,10 @@ Similarity chart: `recommendations_plot.png` · Raw run log: `run_output.txt`
 
 ## How to Run
 ```bash
-pip install -r ../../requirements.txt   # from the Projects folder
+pip install pandas scikit-learn matplotlib
 python recommendation_system.py
 ```
-The dataset is read from `../../data/netflix_dataset.csv` relative to
-this folder (the `data/` folder at the repo root).
+The script loads the dataset from `../../data/netflix_dataset.csv` relative to this folder — that is, a `data/` folder sitting next to your clone of this repository (the code sets `DATA_PATH = HERE.parents[1] / "data" / "netflix_dataset.csv"`). The dataset is not included in this repository, so place `netflix_dataset.csv` there before running.
 
 ## Files
 - `recommendation_system.py` — main script (recommender class + examples)
