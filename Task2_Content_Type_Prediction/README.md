@@ -53,9 +53,13 @@ Numbers: `results.json`
 
 ## How to Run
 ```bash
-pip install -r ../../requirements.txt
+pip install pandas scikit-learn matplotlib
 python content_type_prediction.py
 ```
+
+The script loads `../../data/netflix_dataset.csv` relative to this folder
+(a `data/` folder next to the repo clone); the dataset is not included
+in this repo.
 
 ## Files
 - `content_type_prediction.py` — main script
