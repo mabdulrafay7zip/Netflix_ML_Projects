@@ -8,7 +8,8 @@ predict whether it is a **Movie** or a **TV Show** — a binary
 classification problem.
 
 ## Dataset
-The Netflix titles dataset:
+The Netflix titles dataset
+(`netflix_dataset.csv`, not included in this repository — see "How to Run" below):
 **8,790 rows** (6,126 Movies / 2,664 TV Shows). Split 80/20 with
 stratification: 7,032 train / 1,758 test rows.
 
@@ -56,10 +57,7 @@ Numbers: `results.json`
 pip install pandas scikit-learn matplotlib
 python content_type_prediction.py
 ```
-
-The script loads `../../data/netflix_dataset.csv` relative to this folder
-(a `data/` folder next to the repo clone); the dataset is not included
-in this repo.
+The script loads the dataset from `../../data/netflix_dataset.csv` relative to this folder — that is, a `data/` folder sitting next to your clone of this repository (the code sets `DATA_PATH = HERE.parents[1] / "data" / "netflix_dataset.csv"`). The dataset is not included in this repository, so place `netflix_dataset.csv` there before running.
 
 ## Files
 - `content_type_prediction.py` — main script
