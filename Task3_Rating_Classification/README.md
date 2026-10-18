@@ -9,7 +9,8 @@ problem. If ratings can be predicted reliably, missing or inconsistent
 ratings in a catalogue can be flagged automatically.
 
 ## Dataset
-The Netflix titles dataset:
+The Netflix titles dataset
+(`netflix_dataset.csv`, not included in this repository — see "How to Run" below):
 **8,790 rows, all 8,790 with a usable rating**. Ratings appearing fewer
 than 100 times (NC-17, TV-Y7-FV, UR) were merged into an **"Other"**
 class, giving **10 classes**: TV-MA (3,205), TV-14 (2,157), TV-PG (861),
@@ -55,9 +56,11 @@ Numbers: `results.json` · Full run log: `run_output.txt`
 
 ## How to Run
 ```bash
-pip install -r ../../requirements.txt
+pip install pandas scikit-learn matplotlib
 python rating_classification.py
 ```
+The script loads the dataset from `../../data/netflix_dataset.csv` relative to this folder — that is, a `data/` folder sitting next to your clone of this repository (the code sets `DATA_PATH = HERE.parents[1] / "data" / "netflix_dataset.csv"`). The dataset is not included in this repository, so place `netflix_dataset.csv` there before running.
+
 Note: the grid-search step makes this script take ~2–3 minutes.
 
 ## Files
