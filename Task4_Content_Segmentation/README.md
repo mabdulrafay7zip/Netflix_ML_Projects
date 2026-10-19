@@ -9,7 +9,8 @@ by segment rather than title by title. This is an unsupervised
 **K-Means clustering** task.
 
 ## Dataset
-The Netflix titles dataset:
+The Netflix titles dataset
+(`netflix_dataset.csv`, not included in this repository — see "How to Run" below):
 all **8,790 rows** are clustered.
 
 ## Approach
@@ -56,9 +57,11 @@ Interpretation file: `cluster_interpretation.txt`
 
 ## How to Run
 ```bash
-pip install -r ../../requirements.txt
+pip install pandas numpy scikit-learn matplotlib
 python content_segmentation.py
 ```
+
+The script loads the dataset from `../../data/netflix_dataset.csv` relative to this folder — that is, a `data/` folder sitting next to your clone of this repository (the code sets `DATA_PATH = HERE.parents[1] / "data" / "netflix_dataset.csv"`). The dataset is not included in this repository, so place `netflix_dataset.csv` there before running.
 
 ## Files
 - `content_segmentation.py` — main script
