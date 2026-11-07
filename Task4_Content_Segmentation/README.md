@@ -63,6 +63,16 @@ python content_segmentation.py
 
 The script loads the dataset from `../../data/netflix_dataset.csv` relative to this folder — that is, a `data/` folder sitting next to your clone of this repository (the code sets `DATA_PATH = HERE.parents[1] / "data" / "netflix_dataset.csv"`). The dataset is not included in this repository, so place `netflix_dataset.csv` there before running.
 
+## Interpreting the output
+
+- `Rows clustered: 8790` — every row of the dataset is clustered; nothing is held out (unsupervised task, no train/test split).
+- `Feature matrix after encoding: (8790, 33)` — 8,790 titles × 33 encoded features (the 2 numeric + one-hot encoded categorical features from Approach).
+- One `k=N: inertia=...  silhouette=...` line per k from 2 to 10. Inertia always falls as k grows, so it never picks k by itself; the silhouette score decides. Note the silhouette is computed on a random sample of 2,000 titles (it is O(n²)), not the full 8,790.
+- `Chosen k = 3 (highest silhouette score)` — k=3 has the highest silhouette (0.2082); the elbow chart alone shows no sharp bend.
+- The `Cluster profile:` table is the machine-readable version of the interpretation above: `titles` is the segment size, `pct_movies` is the fraction of movies (0.62 = 62%), `avg_release_year` and `avg_duration` are the segment means — the duration number mixes movie minutes and TV seasons, so read it only as a rough scale.
+- The plain-English lines that follow (`Cluster 0 (3458 titles): mostly movies ...`) are also saved to `cluster_interpretation.txt`.
+- The final `Saved:` line lists the five files the run writes; `results.json` holds the same numbers in machine-readable form (`rows`, `features`, `chosen_k`, `silhouette_by_k`, `cluster_sizes`).
+
 ## Files
 - `content_segmentation.py` — main script
 - `cluster_visualisation.png` — PCA 2-D cluster plot (screenshot)
