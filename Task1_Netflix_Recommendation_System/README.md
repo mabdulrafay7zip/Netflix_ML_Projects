@@ -53,6 +53,17 @@ python recommendation_system.py
 ```
 The script loads the dataset from `../../data/netflix_dataset.csv` relative to this folder — that is, a `data/` folder sitting next to your clone of this repository (the code sets `DATA_PATH = HERE.parents[1] / "data" / "netflix_dataset.csv"`). The dataset is not included in this repository, so place `netflix_dataset.csv` there before running.
 
+## Interpreting the output
+
+- `Catalogue loaded: 8787 unique titles` — the 8,790-row CSV minus the 3 duplicated titles dropped in `load_catalogue()`; the recommender indexes 8,787 titles.
+- `Columns used for profiles: listed_in, country, director, type, rating` — the five columns combined into each title's text profile; `show_id`, `date_added` and `duration` are not used.
+- `TF-IDF matrix shape: (8787, 5398)` — 8,787 titles × 5,398 vocabulary terms; the second number is the size of the TF-IDF vocabulary, not a score.
+- One `Top 10 recommendations for 'X':` table per example title (Midnight Mass, Ganglands, The Great British Baking Show), with columns `title`, `similarity`, `type`, `country`, `release_year`, `rating`, `listed_in`. `similarity` is the cosine similarity rounded to 4 decimals — 0.7267 means 72.67% profile overlap, not a rating.
+- Identical scores are real, not a bug: the first four picks for Midnight Mass all score exactly 0.7267 — titles with near-identical profiles can tie once the score is rounded to 4 decimals.
+- The title you ask about never appears in its own list — `recommend()` drops it (it would score 1.0 against itself).
+- The final `Saved: ...` line lists the three files the run writes: `recommendations_example.txt` (the three top-10 tables), `results.json` (`catalogue_titles`, `tfidf_features`, and the example title lists), and `recommendations_plot.png` (a horizontal bar chart of the Midnight Mass top 10 only).
+- If the title is not in the catalogue the script stops with `'X' was not found in the catalogue.` — the lookup is case-insensitive, so check the spelling.
+
 ## Files
 - `recommendation_system.py` — main script (recommender class + examples)
 - `recommendations_example.txt` — top-10 lists for 3 example titles
