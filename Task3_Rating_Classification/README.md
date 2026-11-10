@@ -63,6 +63,17 @@ The script loads the dataset from `../../data/netflix_dataset.csv` relative to t
 
 Note: the grid-search step makes this script take ~2–3 minutes.
 
+## Interpreting the output
+
+- `Rows with a usable rating: 8790 of 8790` — nothing was dropped: every row in the dataset has a rating, so all 8,790 titles are used.
+- `Rating classes: {...}` lists all 10 classes with their counts — TV-MA dominates with 3,205 titles (~36.5%), which is also the majority-class baseline: always guessing TV-MA would score ~36.5%.
+- `Train: 7032 | Test: 1758 | Classes: 10` — the 80/20 stratified split, so every class keeps its share in both halves.
+- One accuracy line per model — Decision Tree `0.4306`, Random Forest `0.4494`, Tuned Random Forest `0.5085` — with the tuned line also printing the winning grid-search parameters (`max_depth=20, min_samples_leaf=2, n_estimators=200`); that grid search is why the run takes ~2–3 minutes.
+- `Best model: Random Forest (tuned) (0.5085)` is followed by the full classification report: the `support` column is the test-set count per class (TV-MA 641 down to Other 27), and the `accuracy` row at the bottom (0.51) is the same 0.5085 rounded to two decimals.
+- Read the report's per-class rows, not just the headline: TV-MA is recognised best (recall 0.80, F1 0.66), TV-G is barely detected at all (recall 0.02, F1 0.04), and `Other` scores 0.00 on every metric — the model never predicts it.
+- `macro avg` (F1 0.35) averages the ten classes equally, so the tiny classes drag it down; `weighted avg` (F1 0.48) weights by support and sits close to the overall accuracy.
+- The final `Saved:` line lists the four files the run writes: `classification_report.txt` (best model, its accuracy and the full report), `accuracy_comparison.png` (bar chart of the three accuracies), `confusion_matrix.png` (best model only, rows = actual rating, columns = predicted rating) and `results.json` (dataset rows, class count, per-model accuracies, best model and its best parameters).
+
 ## Files
 - `rating_classification.py` — main script
 - `accuracy_comparison.png`, `confusion_matrix.png` — screenshots
